@@ -1,0 +1,12 @@
+NE 406 HW 3.1a                                           
+c *****CELL CARDS*****                                        
+10  100  -18.81  -1    imp:n=1                                  $ cell 10, mat 100 (U235), 18.81 g/cc, inside surface 1, track neutrons
+20   0            1    imp:n=0                                  $ cell 20, void, outside surface 1, kill neutrons
+                                                            
+c *****SURFACE CARDS*****                                     
+1   so  8.43109                                                 $ surface 1, sphere w/ r=8.43109 cm    
+                                                         
+c *****DATA CARDS*****                                       
+kcode  100     1.0    50    10000                               $ 100 neutrons/cycle, keff guess=1, discard first 50 cycles, run 10000 total
+ksrc     0.0   0.0     0.0                                      $ starting guess: neutrons at center, isotropic point source, ignored after initial cycle
+m100   92235  -100                                              $ mat 100 (100% U235)

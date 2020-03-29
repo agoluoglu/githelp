@@ -1,0 +1,22 @@
+NE 406 HW 5.2
+c *****CELLS CARDS*****
+1 1 -2.7     -1     imp:h=1        $ cell 1, material 1 (Al), 2.7 g/cm^3, inside surface 1, track protons
+2 0           1 -2  imp:h=1        $ cell 2, material void, no density, outside surface 1, track protons
+3 0           2     imp:h=0        $ cell 3, material void, no density , outside surface 2, kill protons
+
+c *****SURFACE CARDS*****
+1 sph  0 0 0                       $ sphere of aluminum centered at origin
+       2                           $ arbitrary radius to encompass mesh
+2 sph  0 0 0                       $ surface 2, sphere centered at origin
+       50                          $ arbitrary radius to encompass problem
+
+c *****DATA CARDS*****
+mode h                             $ track protons
+sdef par=9 erg=20 pos=0 0 0        $ 20 MeV proton point source at origin 
+fmesh4:h origin -1 -1 -1           $ flux mesh tally grid with 
+         imesh 1 iints 1000        $ x (-1,1) with 1000 divisions
+         jmesh 1 jints 1           $ y (-1,1) with 1 division
+         kmesh 1 kints 1           $ z (-1,1) with 1 division
+         out ij                    $ viewing an (x,y) grid of points for each z division
+ctme 1                             $ run for 1 minute
+m1 13000 1                         $ material 1: 100% aluminum

@@ -1,0 +1,18 @@
+NE 406 HW 5.1
+c *****CELLS CARDS*****
+1 0         -1    imp:p=1          $ cell 1, material void, no density, inside surface 1, track photons 
+2 0          1    imp:p=0          $ cell 2, material void, no density, outside surface 1, kill photons
+
+c *****SURFACE CARDS*****
+1 sph  0 0 0                       $ surface 1, sphere centered at origin
+       500                         $ arbitrary radius to encompass mesh
+
+c *****DATA CARDS*****
+mode p                             $ track photons
+sdef par=2 erg=1 pos=0 0 0         $ 1 MeV point source at origin, energy and particle type irrelevant 
+fmesh4:p origin -200 -200 -5       $ flux mesh tally grid with 
+         imesh 200 iints 40        $ x (-200,200) with 40 divisions
+         jmesh 200 jints 40        $ y (-200,200) with 40 divisions
+         kmesh 5   kints 1         $ z (-5,5) with 1 division
+         out ij                    $ viewing an (x,y) grid of points for each z division
+ctme 2                             $ run for 2 minutes

@@ -1,0 +1,17 @@
+NE 406 HW 2.2
+c *****CELLS CARDS*****
+1 0         -1    imp:n=0              $ cell 1, material void, no density, inside surface 1, kill neutrons so as not to double count in sphere
+2 0          1 -2 imp:n=1              $ cell 2, material void, no density, outside surface 1 inside surface 2, track neutrons
+3 0          2    imp:n=0              $ cell 3, material void, no density, outside surface 2, kill neutrons
+
+c *****SURFACE CARDS*****
+1 tz   0   0   3.5              $ surface 1 torus, lying flat on top of  origin (center of torus is 3.5 cm off of the table)
+       4.5 3.5 3.5              $ inner radius 1 cm, outer radius 8 cm (diameter 7 cm, radius 3.5 cm)
+2 sph  0   0   0                $ surface 2, centered at origin, to encompass point source
+       100                      $ arbitrary radius to encompass point source 
+
+c *****DATA CARDS*****
+mode n                        $ track neutrons
+sdef par=1 pos=0 0 12 erg=1    $ 1 MeV neutron point source "point of view" 12 cm above table
+f1:n 1                        $ surface crossing tally for neutrons across surface 1
+nps 10000                     $ run 10,000 particles
